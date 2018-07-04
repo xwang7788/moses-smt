@@ -13,12 +13,11 @@ ENV PACKAGES="build-essential \
     libtool \
     wget \
     zlib1g-dev \
-    python-dev \
     libbz2-dev \
     cmake"
 
 RUN apt-get update && apt-get install -q -y ${PACKAGES}
-RUN apt-get install -q -y python python-pip
+RUN apt-get install -q -y python python-pip virtualenv python-dev
 RUN git clone --depth 1 https://github.com/moses-smt/mosesdecoder.git \
     && cd mosesdecoder \
     && make -f contrib/Makefiles/install-dependencies.gmake PREFIX=/opt \
