@@ -17,8 +17,9 @@ ENV PACKAGES="build-essential \
     libbz2-dev \
     cmake"
 
-RUN apt-get update && apt-get install -q -y ${PACKAGES} python\
-    && git clone --depth 1 https://github.com/moses-smt/mosesdecoder.git \
+RUN apt-get update && apt-get install -q -y ${PACKAGES}
+RUN apt-get install -q -y python python-pip
+RUN git clone --depth 1 https://github.com/moses-smt/mosesdecoder.git \
     && cd mosesdecoder \
     && make -f contrib/Makefiles/install-dependencies.gmake PREFIX=/opt \
     && OPT=/opt ./compile.sh --prefix=${MOSES_HOME} --install-scripts \
@@ -35,5 +36,4 @@ RUN apt-get update && apt-get install -q -y ${PACKAGES} python\
     && rm -rf mgiza \
     && apt-get remove -q -y ${PACKAGES} \
     && apt-get autoremove -q -y
-RUN apt-get install -q -y python-pip
 ENV LD_LIBRARY_PATH /opt/lib
