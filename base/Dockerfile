@@ -17,7 +17,7 @@ ENV PACKAGES="build-essential \
     libbz2-dev \
     cmake"
 
-RUN apt-get update && apt-get install -q -y ${PACKAGES} python \
+RUN apt-get update && apt-get install -q -y ${PACKAGES} python python-pip\
     && git clone --depth 1 https://github.com/moses-smt/mosesdecoder.git \
     && cd mosesdecoder \
     && make -f contrib/Makefiles/install-dependencies.gmake PREFIX=/opt \
